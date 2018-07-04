@@ -10,6 +10,9 @@ class Pengguna extends CI_Controller {
 		$this->load->model('Pengguna_m');
 		//load helper form
 		$this->load->helper('form');	
+		if ($this->session->userdata('logged_in') == null) {
+			redirect("Login/logout");
+		}
 	}
 
 	/* index (fungsi yang akan berjalan jika tidak ada fungsi yang dipangggil)

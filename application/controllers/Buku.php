@@ -9,7 +9,10 @@ class Buku extends CI_Controller {
 		//load model Buku_m
 		$this->load->model('Buku_m');
 		//load helper form
-		$this->load->helper('form');	
+		$this->load->helper('form');
+		if ($this->session->userdata('logged_in') == null) {
+			redirect("Login/logout");
+		}
 	}
 
 	/* index (fungsi yang akan berjalan jika tidak ada fungsi yang dipangggil)
