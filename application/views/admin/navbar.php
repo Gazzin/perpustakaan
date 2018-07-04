@@ -34,7 +34,8 @@
           Member
           <span class="badge badge-pill bg-light align-text-bottom">27</span>
         </a>
-        <a class="nav-link" href="#">Buku</a>
+        <a class="nav-link" href="<?php echo base_url('index.php/Pengguna') ?>">Pengguna</a>
+        <a class="nav-link" href="<?php echo base_url('index.php/Buku') ?>">Buku</a>
       </nav>
     </div>
 
