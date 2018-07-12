@@ -10,6 +10,21 @@ class Transaksi_m extends CI_Model {
 			'kode_petugas' => $this->session->userdata('')
 		);
 	}
+	public function get_detail($id)
+	{
+		$this->db->select('detail_peminjaman.*,buku.judul');
+		$this->db->join('buku','detail_peminjaman.kode_buku=buku.kode');
+		$this->db->where('no_pinjam',$id);
+		return $this->db->get('detail_peminjaman')->result();
+	}
+	public function get_data()
+	{
+		$this->db->select('peminjaman.*,group_concat(buku.judul,"-",detail_peminjaman.jumlah separator "<br>") as list');
+		$this->db->join('detail_peminjaman','peminjaman.no_pinjam=detail_peminjaman.no_pinjam');
+		$this->db->join('buku','detail_peminjaman.kode_buku=buku.kode');
+		$this->db->group_by('peminjaman.no_pinjam');
+		return $this->db->get('peminjaman')->result();
+	}
 	public function gen_no_pinjam()
 	{
 		$query = $this->db->query("select no_pinjam from peminjaman order by no_pinjam desc limit 1");

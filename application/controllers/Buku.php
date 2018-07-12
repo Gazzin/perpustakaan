@@ -52,10 +52,25 @@ class Buku extends CI_Controller {
 		}
 		// jika kita sudah melalukan submit
 		else{
-			//memanggil fungsi insertData pada model
-			$this->Buku_m->insertData();
-			//redirect / pergi ke halaman 'buku'
-			redirect('Buku');
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']  = '10000';
+			$config['max_width']  = '10240';
+			$config['max_height']  = '7680';
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('gambar')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->load->view('admin/buku/tambah.php',$error); 
+			}
+			else{
+				$data = array('upload_data' => $this->upload->data());
+				echo "success";
+				$this->Buku_m->insertData();
+				redirect('Buku');
+			}
+			
 		}
 	}
 
@@ -92,10 +107,28 @@ class Buku extends CI_Controller {
 		}
 		// jika kita sudah melalukan submit
 		else{
-			//memanggil fungsi insertData pada model
-			$this->Buku_m->updateData($id);
-			//redirect / pergi ke halaman 'buku'
-			redirect('Buku');
+			if($_FILES['gambar']['name'] != null){
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size']  = '1000';
+				$config['max_width']  = '10240';
+				$config['max_height']  = '7680';
+
+				$this->load->library('upload', $config);
+
+				if ( ! $this->upload->do_upload('gambar')){
+					$data['error'] = $this->upload->display_errors();
+					$this->load->view('admin/buku/ubah',$data);
+				}
+				else{
+					$this->Buku_m->updateData($id,true);
+					redirect('Buku');
+				}
+			}else{
+				$this->Buku_m->updateData($id);
+					redirect('Buku');
+			}
+			
 		}
 	}
 

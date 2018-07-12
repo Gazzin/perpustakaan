@@ -19,6 +19,7 @@
 				<th>Pengarang</th>
 				<th>Tahun Terbit</th>
 				<th>Abstrak</th>
+				<th>Gambar</th>
 				<th>Aksi</th>
 			</tr>
 		</thead>
@@ -32,6 +33,7 @@
 					<td><?php echo $value['pengarang'] ?></td>
 					<td><?php echo $value['tahunterbit'] ?></td>
 					<td><?php echo $value['abstrak'] ?></td>
+					<td><img src="<?php echo base_url('uploads/'.$value['gambar']) ?>" style="width: 150px;"></td>
 					<td>
 						<!-- --AKSI-- -->
 						<a href="<?php echo base_url('Buku/ubah/'.$value['kode']) ?>" class="btn btn-sm btn-success">Ubah</a>

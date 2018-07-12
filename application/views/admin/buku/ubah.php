@@ -11,7 +11,8 @@
 	<!-- PS : 
 	name pada input harus sama dengan table didatabase
 	intinya hanya pada syntax input dan form saja lainnya dari bootstrap e -->
-	<form action="<?php echo base_url('Buku/ubah/'.$getData['kode']); ?>" method="post">
+	<?php echo form_open_multipart(''); ?>
+		<?php echo (isset($error) ? $error : "") ?>
 		<div class="form-group row">
 			<label for="judul" class="col-sm-2 col-form-label">judul</label>
 			<div class="col-sm-10">
@@ -45,6 +46,12 @@
 			<div class="col-sm-10">
 				<input type="text" name="abstrak" class="form-control" id="abstrak"  value="<?php echo $getData['abstrak'] ?>" placeholder="abstrak">
 				<?php echo form_error('abstrak') ?> <!-- menampilkan error saat rule abstrak gagal -->
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="gambar" class="col-sm-2 col-form-label">gambar</label>
+			<div class="col-sm-10">
+				<input type="file" name="gambar" class="form-control">
 			</div>
 		</div>
 		<div class="form-group row">

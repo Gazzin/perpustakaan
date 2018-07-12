@@ -32,12 +32,10 @@
     <div class="nav-scroller bg-white box-shadow">
       <nav class="nav nav-underline">
         <a class="nav-link active" href="#">Dashboard</a>
-        <a class="nav-link" href="#">
-          Member
-          <span class="badge badge-pill bg-light align-text-bottom">27</span>
-        </a>
         <a class="nav-link" href="<?php echo base_url('index.php/Pengguna') ?>">Pengguna</a>
         <a class="nav-link" href="<?php echo base_url('index.php/Buku') ?>">Buku</a>
+        <a class="nav-link" href="<?php echo base_url('index.php/Transaksi') ?>">Transaksi</a>
+        <a class="nav-link" href="<?php echo base_url('index.php/Transaksi/laporan') ?>">Laporan Transaksi</a>
       </nav>
     </div>
 

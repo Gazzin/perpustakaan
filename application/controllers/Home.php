@@ -11,4 +11,9 @@ class Home extends CI_Controller {
 		$data['buku'] = $this->db->get('buku')->result();
 		$this->load->view('user/home.php',$data);
 	}
+	public function detail($id)
+	{
+		$data['buku'] = $this->db->where('kode',$id)->get('buku')->result()[0];
+		$this->load->view('user/detail_buku',$data);
+	}
 }

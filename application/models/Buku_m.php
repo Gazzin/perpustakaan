@@ -32,16 +32,20 @@ class Buku_m extends CI_Model {
 		/* jika semua sama sperti di table
 		gunakan versi simple seprti berikut */
 		$data = $this->input->post();
+		$data['gambar'] = $this->upload->data('file_name');
 		/* eksekusi query insert into "buku" diisi dengan variable $data
 		face2face ae lek bingung :| */
 		$this->db->insert("buku",$data);
 	}
 
-	public function updateData($id)	
+	public function updateData($id,$upload=false)	
 	{
 		/* jika semua sama sperti di table
 		gunakan versi simple seprti berikut */
 		$data = $this->input->post();
+		if($upload){
+			$data['gambar'] = $this->upload->data('file_name');
+		}
 		//mengeset where id=$id
 		$this->db->where('kode',$id);
 		/*eksekusi update buku set $data from buku where id=$id

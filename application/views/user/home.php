@@ -6,7 +6,20 @@
     </div>
 
     <div class="container">
-      
+      <div class="row">
+        <?php foreach ($buku as $key => $value): ?>
+          <div class="col-md-3 col-sm-6">
+            <a href="<?php echo base_url('Home/detail/'.$value->kode) ?>">
+              <div class="card">
+  <img class="card-img-top" src="<?php echo base_url("uploads/".$value->gambar) ?>" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text text-center"><?php echo $value->judul ?></p>
+  </div>
+</div>
+            </a>
+          </div>
+        <?php endforeach ?>
+      </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
