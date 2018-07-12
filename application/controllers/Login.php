@@ -11,7 +11,11 @@ class Login extends CI_Controller {
 		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/login');
 		}else{
-			redirect('Welcome');
+			if($this->session->userdata('logged_in')['peran'] == '1'){
+				redirect('Welcome');
+			}else{
+				redirect("Home");
+			}
 		}
 	}
 	public function cekDB($username)
@@ -31,6 +35,23 @@ class Login extends CI_Controller {
 		}else{
 			$this->form_validation->set_message('cekDB',"Username Password tidak valid");
 			return false;
+		}
+	}
+	public function register()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('nama','nama','required');
+		$this->form_validation->set_rules('alamat','alamat','required');
+		$this->form_validation->set_rules('notelp','notelp','required');
+		$this->form_validation->set_rules('username','Username','required');
+		$this->form_validation->set_rules('password','Password','required');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('admin/register');
+		}else{
+			$set = $this->input->post();
+			$set['peran'] = '2';
+			$this->db->insert('pengguna',$set);
+			redirect('Login');
 		}
 	}
 	public function logout()

@@ -1,16 +1,18 @@
 <div class="login-page">
   <div class="form">
-  	<?php echo validation_errors(); ?>
+    <?php echo validation_errors(); ?>
     <?php echo form_open(''); ?>
+      <input type="text" placeholder="nama" name="nama"/>
+      <input type="text" placeholder="alamat" name="alamat"/>
+      <input type="text" placeholder="notelp" name="notelp"/>
       <input type="text" placeholder="username" name="username"/>
       <input type="password" placeholder="password" name="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="<?php echo base_url("index.php/Login/register") ?>">Create an account</a></p>
+      <button>Register</button>
     <?php echo form_close(); ?>
   </div>
 </div>
 <style type="text/css">
-	@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
   width: 360px;
