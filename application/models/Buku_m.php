@@ -17,6 +17,19 @@ class Buku_m extends CI_Model {
 		//untuk merubah table menjadi array
 		return $query->result_array();
 	}
+	public function show_data($word = null)
+	{
+		$this->db->select('*');
+		$this->db->from("buku");
+		if ($word != null) {
+			$this->db->like('buku.judul',$word);
+			$this->db->or_like('buku.penerbit',$word);
+			$this->db->or_like('buku.abstrak',$word);
+		}
+		
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 
 	public function getDataWhereId($id)

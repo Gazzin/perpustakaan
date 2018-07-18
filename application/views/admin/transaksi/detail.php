@@ -7,17 +7,22 @@
 		<div class="form-group row">
 			<label for="kode_buku" class="col-sm-2 col-form-label">kode_buku</label>
 			<div class="col-sm-10">
-				<select name="kode_buku" class="form-control">
+				<select name="kode_buku" class="form-control" id="kd-buku">
 					<?php foreach ($buku as $key => $value): ?>
-						<option value="<?php echo $value->kode ?>"><?php echo $value->judul ?></option>
+						<option value="<?php echo $value->kode ?>" data-stok="<?php echo $value->stok ?>"><?php echo $value->judul ?></option>
 					<?php endforeach ?>
 				</select>
+				<script type="text/javascript">
+					$('#kd-buku').change(function(){
+						$("#kd-jumlah").attr('max',$("#kd-buku :selected").data('stok'));
+					});
+				</script>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="jumlah" class="col-sm-2 col-form-label">jumlah</label>
 			<div class="col-sm-10">
-				<input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="jumlah">
+				<input type="number" name="jumlah" class="form-control" id="kd-jumlah" placeholder="jumlah" max="<?php echo $buku[0]->stok ?>">
 				<?php echo form_error('jumlah') ?> <!-- menampilkan error saat rule jumlah gagal -->
 			</div>
 		</div>
@@ -34,6 +39,7 @@
 				<tr>
 					<th>Judul</th>
 					<th>Jumlah</th>
+					<th>Harga</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -42,6 +48,7 @@
 					<tr>
 						<td><?php echo $value->judul ?></td>
 						<td><?php echo $value->jumlah ?></td>
+						<td><?php echo $value->harga ?></td>
 						<td><a href="<?php echo base_url('Transaksi/detail_delete/'.$id_peminjaman.'/'.$value->kode) ?>" class="btn btn-sm btn-danger">X</a></td>
 					</tr>
 				<?php endforeach ?>

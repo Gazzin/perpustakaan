@@ -1,10 +1,7 @@
 <?php $this->load->view('admin/header') ?>
 <?php $this->load->view('admin/navbar') ?>
 <main role="main" class="container">
-	<div class="jumbotron">
-		<h1>Selamat Datang</h1>
-		<p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-	</div>
+	
 	<h1>Pengguna</h1>
 	<a href="<?php echo base_url('Pengguna/tambah') ?>" class="btn btn-primary mb-3">Tambah</a>
 
@@ -18,9 +15,10 @@
 				<th>Alamat</th>
 				<th>No Telp</th>
 				<th>Username</th>
-				<th>Password</th>
 				<th>Peran</th>
+				<?php if ($this->session->userdata('logged_in')['peran'] == '1'): ?>
 				<th>Aksi</th>
+			<?php endif ?>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,12 +30,27 @@
 					<td><?php echo $value['alamat'] ?></td>
 					<td><?php echo $value['notelp'] ?></td>
 					<td><?php echo $value['username'] ?></td>
-					<td><?php echo $value['password'] ?></td>
-					<td><?php echo $value['peran'] ?></td>
+					<td><?php switch ($value['peran']) {
+						case '1':
+							echo "Admin";
+							break;
+							case '2':
+							echo "Petugas";
+							break;
+							case '3':
+							echo "Anggota";
+							break;
+						
+						default:
+							echo "Tidak Diketahui";
+							break;
+					} ?></td>
 					<td>
 						<!-- --AKSI-- -->
+						<?php if ($this->session->userdata('logged_in')['peran'] == '1'): ?>
 						<a href="<?php echo base_url('Pengguna/ubah/'.$value['kode']) ?>" class="btn btn-sm btn-success">Ubah</a>
 						<a href="<?php echo base_url('Pengguna/hapus/'.$value['kode']) ?>" class="btn btn-sm btn-danger">Hapus</a>
+						<?php endif ?>
 					</td>
 				</tr>
 			<?php endforeach ?>

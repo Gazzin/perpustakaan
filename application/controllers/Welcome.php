@@ -23,6 +23,9 @@ class Welcome extends CI_Controller {
 		if ($this->session->userdata('logged_in') == null) {
 			redirect("Login/logout");
 		}
+		if($this->session->userdata('logged_in')['peran'] == '3'){
+			redirect('Home');
+		}
 		$this->load->view('admin/home.php');
 	}
 }

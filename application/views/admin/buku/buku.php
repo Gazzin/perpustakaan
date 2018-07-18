@@ -1,10 +1,7 @@
 <?php $this->load->view('admin/header') ?>
 <?php $this->load->view('admin/navbar') ?>
 <main role="main" class="container">
-	<div class="jumbotron">
-		<h1>Selamat Datang</h1>
-		<p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-	</div>
+	
 	<h1>Buku</h1>
 	<a href="<?php echo base_url('Buku/tambah') ?>" class="btn btn-primary mb-3">Tambah</a>
 
@@ -19,6 +16,8 @@
 				<th>Pengarang</th>
 				<th>Tahun Terbit</th>
 				<th>Abstrak</th>
+				<th>Stok</th>
+				<th>Harga</th>
 				<th>Gambar</th>
 				<th>Aksi</th>
 			</tr>
@@ -33,6 +32,8 @@
 					<td><?php echo $value['pengarang'] ?></td>
 					<td><?php echo $value['tahunterbit'] ?></td>
 					<td><?php echo $value['abstrak'] ?></td>
+					<td><?php echo $value['stok'] ?></td>
+					<td><?php echo $value['harga'] ?></td>
 					<td><img src="<?php echo base_url('uploads/'.$value['gambar']) ?>" style="width: 150px;"></td>
 					<td>
 						<!-- --AKSI-- -->

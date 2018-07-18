@@ -6,9 +6,9 @@
           <h1 class="text-center"><?php echo $buku->judul ?></h1>
         </div>
         <div class="col-md-6 mx-auto">
-          <img src="<?php echo base_url('uploads/'.$buku->gambar) ?>">
+          <img src="<?php echo base_url('uploads/'.$buku->gambar) ?>" class="w-100">
         </div>
-        <div class="col-8 mx-auto">
+        <div class="col-8 mt-3 mx-auto">
           <table>
             <tr>
               <td>Penerbit</td>

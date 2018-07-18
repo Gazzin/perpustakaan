@@ -12,14 +12,15 @@ class Transaksi_m extends CI_Model {
 	}
 	public function get_detail($id)
 	{
-		$this->db->select('detail_peminjaman.*,buku.judul');
+		$this->db->select('detail_peminjaman.*,buku.judul,buku.harga');
 		$this->db->join('buku','detail_peminjaman.kode_buku=buku.kode');
 		$this->db->where('no_pinjam',$id);
 		return $this->db->get('detail_peminjaman')->result();
 	}
 	public function get_data()
 	{
-		$this->db->select('peminjaman.*,group_concat(buku.judul,"-",detail_peminjaman.jumlah separator "<br>") as list');
+		$this->db->select('peminjaman.*,(select nama from pengguna where kode=peminjaman.kode_petugas) as nama_petugas,(select nama from pengguna where kode=peminjaman.kode_pengguna) as nama_pengguna,group_concat(buku.judul,"-",detail_peminjaman.jumlah,"-",buku.harga separator "<br>") as list,
+			sum(detail_peminjaman.jumlah*buku.harga) as total');
 		$this->db->join('detail_peminjaman','peminjaman.no_pinjam=detail_peminjaman.no_pinjam');
 		$this->db->join('buku','detail_peminjaman.kode_buku=buku.kode');
 		$this->db->group_by('peminjaman.no_pinjam');

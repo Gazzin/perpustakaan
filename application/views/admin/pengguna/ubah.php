@@ -1,11 +1,7 @@
 <?php $this->load->view('admin/header') ?>
 <?php $this->load->view('admin/navbar') ?>
 <main role="main" class="container">
-	<div class="jumbotron">
-		<h1>Selamat Datang di Perpustakaan</h1>
-		<p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-	</div>
-	<h1>Table</h1>
+	<h1>Ubah Pengguna</h1>
 	<!-- load header -->
 	<!-- action akan dilakukan ke controller product dengan fungsi ubah -->
 	<!-- PS : 
@@ -51,8 +47,11 @@
 			<label for="peran" class="col-sm-2 col-form-label">peran</label>
 			<div class="col-sm-10">
 				<select name="peran" class="form-control">
-					<option>petugas</option>
-					<option>anggota</option>
+					<?php if ($this->session->userdata('logged_in')['peran'] == '1'): ?>
+						<option value="1">Admin</option>
+					<?php endif ?>
+					<option value="2">Petugas</option>
+					<option value="3">Anggota</option>
 				</select>
 				<script type="text/javascript">$("select[name='peran']").val("<?php echo $getData['peran'] ?>")</script>
 			</div>

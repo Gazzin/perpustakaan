@@ -9,7 +9,10 @@ class Transaksi extends CI_Controller {
 		//load model Pengguna_m
 		$this->load->model('Transaksi_m');
 		//load helper form
-		$this->load->helper('form');	
+		$this->load->helper('form');
+		if($this->session->userdata('logged_in')['peran'] == '3'){
+			redirect('Home');
+		}	
 	}
 
 	public function laporan()
@@ -20,7 +23,7 @@ class Transaksi extends CI_Controller {
 	public function index()
 	{
 		$data['no_pinjam'] = $this->Transaksi_m->gen_no_pinjam();
-		$data['anggota'] = $this->db->where('peran',2)->get('pengguna')->result();
+		$data['anggota'] = $this->db->where('peran',3)->get('pengguna')->result();
 		$this->load->library("form_validation");
 		
 		$this->form_validation->set_rules('tanggal','tanggal','required');
@@ -40,7 +43,7 @@ class Transaksi extends CI_Controller {
 	public function detail($id)
 	{
 		$data['id_peminjaman'] = $id;
-		$data['buku'] = $this->db->get('buku')->result();
+		$data['buku'] = $this->db->where('stok >',0)->get('buku')->result();
 		$data['detail'] = $this->Transaksi_m->get_detail($id);
 		$this->load->library("form_validation");
 		

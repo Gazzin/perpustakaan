@@ -8,7 +8,9 @@ class Home extends CI_Controller {
 		if ($this->session->userdata('logged_in') == null) {
 			redirect("Login/logout");
 		}
-		$data['buku'] = $this->db->get('buku')->result();
+		$this->load->model('Buku_m');
+		$search = $this->input->post('search');
+		$data['buku'] = $this->Buku_m->show_data($search);
 		$this->load->view('user/home.php',$data);
 	}
 	public function detail($id)

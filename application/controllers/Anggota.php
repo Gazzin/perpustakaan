@@ -7,6 +7,9 @@ class Anggota extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Anggota_m');
 		$this->load->helper('form');	
+		if($this->session->userdata('logged_in')['peran'] == '3'){
+			redirect('Home');
+		}
 	}
 
 	public function index()

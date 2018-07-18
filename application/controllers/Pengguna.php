@@ -13,6 +13,9 @@ class Pengguna extends CI_Controller {
 		if ($this->session->userdata('logged_in') == null) {
 			redirect("Login/logout");
 		}
+		if($this->session->userdata('logged_in')['peran'] == '3'){
+			redirect('Home');
+		}
 	}
 
 	/* index (fungsi yang akan berjalan jika tidak ada fungsi yang dipangggil)

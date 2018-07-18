@@ -1,11 +1,8 @@
 <?php $this->load->view('admin/header') ?>
 <?php $this->load->view('admin/navbar') ?>
 <main role="main" class="container">
-	<div class="jumbotron">
-		<h1>Selamat Datang di Perpustakaan</h1>
-		<p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-	</div>
-	<h1>Table</h1>
+
+	<h1>Ubah Buku</h1>
 	<!-- load header -->
 	<!-- action akan dilakukan ke controller product dengan fungsi ubah -->
 	<!-- PS : 
@@ -46,6 +43,20 @@
 			<div class="col-sm-10">
 				<input type="text" name="abstrak" class="form-control" id="abstrak"  value="<?php echo $getData['abstrak'] ?>" placeholder="abstrak">
 				<?php echo form_error('abstrak') ?> <!-- menampilkan error saat rule abstrak gagal -->
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="stok" class="col-sm-2 col-form-label">stok</label>
+			<div class="col-sm-10">
+				<input type="text" name="stok" class="form-control" id="stok"  value="<?php echo $getData['stok'] ?>" placeholder="stok">
+				<?php echo form_error('stok') ?> <!-- menampilkan error saat rule stok gagal -->
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="harga" class="col-sm-2 col-form-label">harga</label>
+			<div class="col-sm-10">
+				<input type="text" name="harga" class="form-control" id="harga"  value="<?php echo $getData['harga'] ?>" placeholder="harga">
+				<?php echo form_error('harga') ?> <!-- menampilkan error saat rule harga gagal -->
 			</div>
 		</div>
 		<div class="form-group row">

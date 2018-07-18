@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/login');
 		}else{
-			if($this->session->userdata('logged_in')['peran'] == '1'){
+			if($this->session->userdata('logged_in')['peran'] != '3'){
 				redirect('Welcome');
 			}else{
 				redirect("Home");
