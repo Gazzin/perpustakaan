@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 			$this->load->view('admin/register');
 		}else{
 			$set = $this->input->post();
-			$set['peran'] = '2';
+			$set['peran'] = '3';
 			$this->db->insert('pengguna',$set);
 			redirect('Login');
 		}
