@@ -4,6 +4,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Laporan</h1>
+			<a href="<?php echo base_url('Transaksi/print') ?>" class="btn btn-success">Print</a>
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>

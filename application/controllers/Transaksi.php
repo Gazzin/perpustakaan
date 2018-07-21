@@ -20,6 +20,15 @@ class Transaksi extends CI_Controller {
 		$data['peminjaman'] = $this->Transaksi_m->get_data();
 		$this->load->view('admin/transaksi/laporan', $data);
 	}
+	public function print()
+	{
+		$this->load->library('pdf');
+
+		$data['peminjaman'] = $this->Transaksi_m->get_data();
+		$this->pdf->load_view('admin/transaksi/print',$data);
+$this->pdf->render();
+$this->pdf->stream("laporan.pdf");
+	}
 	public function index()
 	{
 		$data['no_pinjam'] = $this->Transaksi_m->gen_no_pinjam();
