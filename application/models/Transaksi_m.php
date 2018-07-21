@@ -26,6 +26,16 @@ class Transaksi_m extends CI_Model {
 		$this->db->group_by('peminjaman.no_pinjam');
 		return $this->db->get('peminjaman')->result();
 	}
+	public function get_data_terpinjam()
+	{
+		$this->db->select('peminjaman.*,(select nama from pengguna where kode=peminjaman.kode_petugas) as nama_petugas,(select nama from pengguna where kode=peminjaman.kode_pengguna) as nama_pengguna,group_concat(buku.judul,"-",detail_peminjaman.jumlah,"-",buku.harga separator "<br>") as list,
+			sum(detail_peminjaman.jumlah*buku.harga) as total');
+		$this->db->join('detail_peminjaman','peminjaman.no_pinjam=detail_peminjaman.no_pinjam');
+		$this->db->join('buku','detail_peminjaman.kode_buku=buku.kode');
+		$this->db->group_by('peminjaman.no_pinjam');
+		$this->db->where("peminjaman.status",1);
+		return $this->db->get('peminjaman')->result();
+	}
 	public function gen_no_pinjam()
 	{
 		$query = $this->db->query("select no_pinjam from peminjaman order by no_pinjam desc limit 1");

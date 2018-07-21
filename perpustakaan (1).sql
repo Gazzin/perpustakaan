@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2018 at 04:35 PM
--- Server version: 10.1.26-MariaDB
+-- Generation Time: 18 Jul 2018 pada 17.10
+-- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku`
+-- Struktur dari tabel `buku`
 --
 
 CREATE TABLE `buku` (
@@ -41,7 +41,7 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `buku`
+-- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`kode`, `judul`, `penerbit`, `pengarang`, `tahunterbit`, `stok`, `harga`, `abstrak`, `gambar`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `buku` (`kode`, `judul`, `penerbit`, `pengarang`, `tahunterbit`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_peminjaman`
+-- Struktur dari tabel `detail_peminjaman`
 --
 
 CREATE TABLE `detail_peminjaman` (
@@ -62,7 +62,7 @@ CREATE TABLE `detail_peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_peminjaman`
+-- Dumping data untuk tabel `detail_peminjaman`
 --
 
 INSERT INTO `detail_peminjaman` (`kode`, `jumlah`, `no_pinjam`, `kode_buku`) VALUES
@@ -81,7 +81,7 @@ INSERT INTO `detail_peminjaman` (`kode`, `jumlah`, `no_pinjam`, `kode_buku`) VAL
 (15, 1, 'PER00016', 2);
 
 --
--- Triggers `detail_peminjaman`
+-- Trigger `detail_peminjaman`
 --
 DELIMITER $$
 CREATE TRIGGER `mengurangi` BEFORE INSERT ON `detail_peminjaman` FOR EACH ROW update buku set stok=stok-NEW.jumlah where buku.kode = NeW.kode_buku
@@ -91,7 +91,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman`
+-- Struktur dari tabel `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -105,7 +105,7 @@ CREATE TABLE `peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `peminjaman`
+-- Dumping data untuk tabel `peminjaman`
 --
 
 INSERT INTO `peminjaman` (`no_pinjam`, `kode_petugas`, `kode_pengguna`, `tanggal`, `tanggal_kembali`, `status`, `tanggal_dikembalikan`) VALUES
@@ -118,8 +118,8 @@ INSERT INTO `peminjaman` (`no_pinjam`, `kode_petugas`, `kode_pengguna`, `tanggal
 ('PER00007', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
 ('PER00008', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
 ('PER00009', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
-('PER00010', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
-('PER00011', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
+('PER00010', 2, 2, '2018-07-12', '2018-06-12', 2, '2018-07-18'),
+('PER00011', 2, 2, '2018-07-12', '2018-07-12', 2, '2018-07-18'),
 ('PER00012', 2, 2, '2018-07-12', '2018-07-12', 1, NULL),
 ('PER00013', 2, 2, '2018-07-18', '2018-07-18', 1, NULL),
 ('PER00014', 1, 2, '2018-07-18', '2018-07-18', 1, NULL),
@@ -129,7 +129,7 @@ INSERT INTO `peminjaman` (`no_pinjam`, `kode_petugas`, `kode_pengguna`, `tanggal
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengguna`
+-- Struktur dari tabel `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -143,7 +143,7 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pengguna`
+-- Dumping data untuk tabel `pengguna`
 --
 
 INSERT INTO `pengguna` (`kode`, `nama`, `alamat`, `notelp`, `username`, `password`, `peran`) VALUES

@@ -35,6 +35,7 @@
         <a class="nav-link" href="<?php echo base_url('index.php/Pengguna') ?>">Pengguna</a>
         <a class="nav-link" href="<?php echo base_url('index.php/Buku') ?>">Buku</a>
         <a class="nav-link" href="<?php echo base_url('index.php/Transaksi') ?>">Peminjaman</a>
+        <a class="nav-link" href="<?php echo base_url('index.php/Transaksi/pengembalian') ?>">Pengembalian</a>
         <a class="nav-link" href="<?php echo base_url('index.php/Transaksi/laporan') ?>">Laporan Transaksi</a>
       </nav>
     </div>

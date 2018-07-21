@@ -80,5 +80,18 @@ $this->pdf->stream("laporan.pdf");
 		$this->db->delete('detail_peminjaman');
 		redirect('Transaksi/detail/'.$id_pinjam,'refresh');
 	}
-	
+	public function pengembalian()
+	{
+		$data['peminjaman'] = $this->db->where('status',1)->get('peminjaman')->result();
+		$data['peminjaman'] = $this->Transaksi_m->get_data_terpinjam();
+		$this->load->view('admin/transaksi/pengembalian', $data);
+	}
+	public function kembali($id)
+	{
+		$set['status'] = 2;
+		$set['tanggal_dikembalikan'] = date('Y-m-d');
+		$this->db->where('no_pinjam',$id);
+		$this->db->update('peminjaman',$set);
+		redirect('Transaksi/pengembalian','refresh');
+	}
 }
