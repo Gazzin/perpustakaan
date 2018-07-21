@@ -49,7 +49,9 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">Perpustakaan</h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="<?php echo base_url('Home'); ?>">Buku</a>
-        <a class="p-2 text-dark" href="<?php echo base_url("Welcome"); ?>">Dashboard</a>
+        <?php if ($this->session->userdata('logged_in')['peran'] != 3): ?>
+          <a class="p-2 text-dark" href="<?php echo base_url("Welcome"); ?>">Dashboard</a>
+        <?php endif ?>
       </nav>
       <?php if ($this->session->userdata('logged_in') == null): ?>
         <a class="btn btn-outline-primary" href="<?php echo base_url('index.php/Login') ?>">Login</a>
